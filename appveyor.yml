@@ -1,7 +1,6 @@
 version: 1.0.{build}
 
 environment:
-  PATH: 'C:\msys64\mingw64\bin;C:\msys64\usr\bin\;%PATH%'
   MSYSTEM: 'MSYS'
   MSYS: 'winsymlinks=lnk'
   matrix:
@@ -10,6 +9,7 @@ environment:
 
 install:
   - IF "%TARGET%"=="nightly-x86_64-pc-windows-msvc" CALL "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\vcvars64.bat"
+  - set PATH=C:\msys64\mingw64\bin;C:\msys64\usr\bin\;%PATH%
   - bash -lc "echo $MSYSTEM; pacman --needed --noconfirm -Sy pacman-mirrors"
   - bash -lc "pacman --noconfirm -Sy"
   - bash -lc "pacman -Sy --needed --noconfirm git mingw-w64-x86_64-toolchain tar make python2-setuptools"
